@@ -1,4 +1,4 @@
-package com.oleksandr.monolith.CORS;
+package com.oleksandr.monolith.Configuration.CORS;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -5,6 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -17,8 +18,12 @@ public class JwtUtil {
     
     private final BlacklistService blacklistService;
 
-    private static final String SECRET_KEY = "NnjJGfGyhjJMmNbvfFgtYHjkKkNJbhghjhJmkLmNCFfggHjmK";
-    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    @Value("${jwt.secret}")
+    private String jwtSecret;
+
+    private SecretKey getKey() {
+        return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+    }
 
     public UUID extractUserId(String token) {
         Claims claims = extractAllClaims(token);
@@ -48,7 +53,7 @@ public class JwtUtil {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(key)
+                .setSigningKey(getKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();

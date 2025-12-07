@@ -30,15 +30,11 @@ public class BookingsController {
 
     @PostMapping
     public ResponseEntity<BookingSummaryDTO> createBooking(
-            @RequestHeader("Authorization") String authHeader,
-            @RequestBody BookingCreateRequestDTO bookingDTO) {
-        
-        String token = jwtUtil.extractTokenFromHeader(authHeader);
-        if (token == null || !jwtUtil.isTokenValid(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        
-        UUID userId = jwtUtil.extractUserId(token);
+            @RequestBody BookingCreateRequestDTO bookingDTO,
+            UUID userId
+
+    ) {
+
         BookingSummaryDTO booking = bookingCoordinator.createBooking(userId, bookingDTO.ticketId());
         return ResponseEntity.ok(booking);
     }
@@ -52,42 +48,24 @@ public class BookingsController {
 
     @PutMapping("/{id}/cancel")
     public ResponseEntity<BookingSummaryDTO> cancelBooking(
-            @PathVariable UUID id, 
-            @RequestHeader("Authorization") String authHeader) {
-        
-        String token = jwtUtil.extractTokenFromHeader(authHeader);
-        if (token == null || !jwtUtil.isTokenValid(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        
-        UUID userId = jwtUtil.extractUserId(token);
+            @PathVariable UUID id,
+            UUID userId
+    ) {
         BookingSummaryDTO booking = bookingCoordinator.cancelBooking(id, userId);
         return ResponseEntity.ok(booking);
     }
 
     @PutMapping("/{id}/confirm")
     public ResponseEntity<BookingSummaryDTO> completeBooking(
-            @PathVariable UUID id, 
-            @RequestHeader("Authorization") String authHeader) {
-        
-        String token = jwtUtil.extractTokenFromHeader(authHeader);
-        if (token == null || !jwtUtil.isTokenValid(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        
-        UUID userId = jwtUtil.extractUserId(token);
+            @PathVariable UUID id,
+            UUID userId
+    ) {
         BookingSummaryDTO booking = bookingCoordinator.completeBooking(id, userId);
         return ResponseEntity.ok(booking);
     }
 
     @GetMapping("/my")
-    public ResponseEntity<List<BookingSummaryDTO>> getMyBookings(@RequestHeader("Authorization") String authHeader) {
-        String token = jwtUtil.extractTokenFromHeader(authHeader);
-        if (token == null || !jwtUtil.isTokenValid(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        
-        UUID userId = jwtUtil.extractUserId(token);
+    public ResponseEntity<List<BookingSummaryDTO>> getMyBookings(UUID userId) {
         List<BookingSummaryDTO> bookings = bookingCoordinator.getUserBookings(userId);
         return ResponseEntity.ok(bookings);
     }
@@ -95,14 +73,8 @@ public class BookingsController {
     @PostMapping("/{id}/pay")
     public ResponseEntity<String> initiatePayment(
             @PathVariable("id") UUID bookingId,
-            @RequestHeader("Authorization") String authHeader,
+            UUID userId,
             HttpServletRequest request) {
-
-        String token = jwtUtil.extractTokenFromHeader(authHeader);
-        if (token == null || !jwtUtil.isTokenValid(token)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        UUID userId = jwtUtil.extractUserId(token);
 
         String customerIp = request.getRemoteAddr();
         if ("0:0:0:0:0:0:0:1".equals(customerIp) || "127.0.0.1".equals(customerIp)) {
