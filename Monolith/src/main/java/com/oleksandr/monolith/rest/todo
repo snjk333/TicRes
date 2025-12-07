@@ -1,0 +1,18 @@
+    /**
+     * TODO: Проверка цифровой подписи от PayU
+     *
+     * В production среде необходимо проверять подпись для безопасности.
+     * PayU отправляет заголовок OpenPayu-Signature с подписью.
+     *
+     * Алгоритм проверки:
+     * 1. Получить заголовок OpenPayu-Signature
+     * 2. Вычислить MD5 от (JSON body + secondKey от PayU)
+     * 3. Сравнить вычисленную подпись с полученной
+     *
+     * Пример:
+     * String signature = request.getHeader("OpenPayu-Signature");
+     * String calculated = MD5(notificationBody + payuSecondKey);
+     * if (!signature.equals(calculated)) {
+     *     throw new SecurityException("Invalid signature");
+     * }
+     */
