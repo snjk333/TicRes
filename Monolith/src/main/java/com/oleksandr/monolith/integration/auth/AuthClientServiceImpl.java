@@ -3,6 +3,7 @@ package com.oleksandr.monolith.integration.auth;
 import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.monolith.common.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -14,24 +15,20 @@ import java.util.UUID;
 @Service
 public class AuthClientServiceImpl implements AuthClientService {
 
-
-    //todo Доработать ВЕСЬ КЛАСС
     private final WebClient.Builder webClientBuilder;
+    private final String authServiceUrl;
 
-    public AuthClientServiceImpl(WebClient.Builder webClientBuilder) {
+    public AuthClientServiceImpl(WebClient.Builder webClientBuilder,
+                                  @Value("${auth.service.url}") String authServiceUrl) {
         this.webClientBuilder = webClientBuilder;
+        this.authServiceUrl = authServiceUrl;
     }
 
-    private WebClient authClient() {
-        return webClientBuilder
-                .baseUrl("http://localhost:8080/api/users")
-                .build();
-    }
     @Override
     public AuthUserDTO getUserById(UUID userId) {
         try {
             WebClient webClient = webClientBuilder
-                    .baseUrl("http://localhost:8080/api/users")
+                    .baseUrl(authServiceUrl + "/api/users")
                     .build();
 
             return webClient.get()
@@ -46,7 +43,6 @@ public class AuthClientServiceImpl implements AuthClientService {
             throw new ResourceNotFoundException("User not found in Auth service: " + userId);
         } catch (Exception e) {
             log.error("Failed to fetch user {} from Auth MS: {}", userId, e.toString());
-            // Можно создать свою ошибку типа AuthServiceUnavailableException
             throw new RuntimeException("Auth service unavailable or failed for user: " + userId, e);
         }
     }
@@ -56,7 +52,7 @@ public class AuthClientServiceImpl implements AuthClientService {
     public AuthUserDTO updateUser(AuthUserDTO userDto) {
         try {
             WebClient webClient = webClientBuilder
-                    .baseUrl("http://localhost:8080/api/users")
+                    .baseUrl(authServiceUrl + "/api/users")
                     .build();
 
             return webClient
