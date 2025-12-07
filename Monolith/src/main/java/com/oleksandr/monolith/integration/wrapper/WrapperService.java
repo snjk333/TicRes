@@ -1,7 +1,7 @@
 package com.oleksandr.monolith.integration.wrapper;
 
-import com.oleksandr.monolith.Event.DTO.EventDTO;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.EventDTO;
+import com.oleksandr.common.dto.TicketDTO;
 
 import java.util.List;
 import java.util.UUID;

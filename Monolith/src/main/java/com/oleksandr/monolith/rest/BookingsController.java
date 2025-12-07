@@ -39,7 +39,7 @@ public class BookingsController {
         }
         
         UUID userId = jwtUtil.extractUserId(token);
-        BookingSummaryDTO booking = bookingCoordinator.createBooking(userId, bookingDTO.getTicketId());
+        BookingSummaryDTO booking = bookingCoordinator.createBooking(userId, bookingDTO.ticketId());
         return ResponseEntity.ok(booking);
     }
 

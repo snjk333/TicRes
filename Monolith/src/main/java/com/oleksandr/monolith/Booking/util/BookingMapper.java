@@ -26,9 +26,8 @@ public class BookingMapper {
         if (dto == null) throw new IllegalArgumentException("BookingDTO cannot be null");
 
         Booking booking = new Booking();
-        booking.setId(dto.getId());
-        booking.setStatus(dto.getStatus());
-        // ticket и user подгружаем через сервис
+        booking.setId(dto.id());
+        booking.setStatus(dto.status());
         return booking;
     }
 

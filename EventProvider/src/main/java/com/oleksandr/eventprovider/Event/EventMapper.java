@@ -1,5 +1,6 @@
 package com.oleksandr.eventprovider.Event;
 
+import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.eventprovider.Ticket.Ticket;
 import com.oleksandr.eventprovider.Ticket.TicketMapper;
 import com.oleksandr.eventprovider.TicketMaster.dto.EventMasterDto;

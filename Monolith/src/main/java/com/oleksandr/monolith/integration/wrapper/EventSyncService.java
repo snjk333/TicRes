@@ -1,16 +1,13 @@
 package com.oleksandr.monolith.integration.wrapper;
 
-import com.oleksandr.monolith.Event.DTO.EventDTO;
+import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.monolith.Event.EntityRepo.Event;
 import com.oleksandr.monolith.Event.EntityRepo.EventRepository;
 import com.oleksandr.monolith.Event.util.EventMapper;
-import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,23 +28,23 @@ public class EventSyncService {
 
         Map<UUID, EventDTO> unique = dtos.stream()
                 .filter(Objects::nonNull)
-                .collect(Collectors.toMap(EventDTO::getId, d -> d, (a, b)->a));
+                .collect(Collectors.toMap(EventDTO::id, d -> d, (a, b)->a));
 
         for (EventDTO dto : unique.values()) {
-            if (dto == null || dto.getId() == null) continue;
+            if (dto == null || dto.id() == null) continue;
 
-            if (eventRepository.existsById(dto.getId())) {
-                Event existing = eventRepository.findById(dto.getId()).orElseThrow();
+            if (eventRepository.existsById(dto.id())) {
+                Event existing = eventRepository.findById(dto.id()).orElseThrow();
                 eventMapper.updateEntityFromDto(existing, dto);
-                // managed — Hibernate обновит при коммите
+                // managed — Hibernate
             } else {
                 Event toInsert = eventMapper.mapToEntityForInsert(dto);
                 try {
                     entityManager.persist(toInsert);
                     entityManager.flush();
                 } catch (PersistenceException ex) {
-                    // race: кто-то вставил между exists и persist
-                    Event existing = eventRepository.findById(dto.getId()).orElse(null);
+                    // race:  exists and persist
+                    Event existing = eventRepository.findById(dto.id()).orElse(null);
                     if (existing != null) {
                         eventMapper.updateEntityFromDto(existing, dto);
                     } else {

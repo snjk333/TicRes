@@ -1,10 +1,10 @@
 package com.oleksandr.eventprovider.FakeInfo;
 
 import com.oleksandr.eventprovider.Event.Event;
-import com.oleksandr.eventprovider.Event.EventDTO;
+import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.eventprovider.Event.EventMapper;
 import com.oleksandr.eventprovider.Event.EventService;
-import com.oleksandr.eventprovider.Ticket.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.eventprovider.Ticket.TicketMapper;
 import com.oleksandr.eventprovider.util.TicketCreationManager;
 import org.springframework.data.domain.Page;

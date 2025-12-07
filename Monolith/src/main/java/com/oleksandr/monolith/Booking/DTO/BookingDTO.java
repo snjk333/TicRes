@@ -5,21 +5,18 @@ import lombok.*;
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class BookingDTO {
+public record BookingDTO(
 
-    private UUID id;
+        UUID id,
 
-    @NotNull
-    private UUID ticketId;
+        @NotNull
+        UUID ticketId,
 
-    @NotNull
-    private UUID userId;
+        @NotNull
+        UUID userId,
 
-    @NotNull
-    private BOOKING_STATUS status;
-}
+        @NotNull
+        BOOKING_STATUS status
+
+) { }

@@ -6,7 +6,7 @@ import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import com.oleksandr.monolith.Booking.util.BookingMapper;
 import com.oleksandr.monolith.Booking.Service.BookingService;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.Ticket.Service.TicketService;
 import com.oleksandr.monolith.Ticket.util.TicketMapper;

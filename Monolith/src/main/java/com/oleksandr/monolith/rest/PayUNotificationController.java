@@ -157,14 +157,14 @@ public class PayUNotificationController {
             log.info("💳 PayU Order ID: {}", payuOrderId);
 
             var booking = bookingCoordinator.getBookingDetails(bookingId);
-            UUID userId = booking.getUser().getId();
+            UUID userId = booking.user().id();
             
             log.info("💰 Step 2: Verifying payment amount...");
             
             String receivedAmountStr = order.getTotalAmount();
             long receivedAmount = Long.parseLong(receivedAmountStr);
             
-            double ticketPricePLN = booking.getTicket().getPrice();
+            double ticketPricePLN = booking.ticket().price();
             long expectedAmount = (long) (ticketPricePLN * 100);
             
             log.info("💰 Expected amount: {} groszy ({} PLN)", expectedAmount, ticketPricePLN);
@@ -188,7 +188,7 @@ public class PayUNotificationController {
             var completedBooking = bookingCoordinator.completeBooking(bookingId, userId);
             
             log.info("✅ Booking {} successfully completed!", bookingId);
-            log.info("📊 New booking status: {}", completedBooking.getStatus());
+            log.info("📊 New booking status: {}", completedBooking.status());
             log.info("💳 PayU Order {} processed successfully", payuOrderId);
             
             log.info("💾 Step 4: Saving processed notification record...");
@@ -214,7 +214,7 @@ public class PayUNotificationController {
 
             var booking = bookingCoordinator.getBookingDetails(bookingId);
 
-            UUID userId = booking.getUser().getId();
+            UUID userId = booking.user().id();
             
             log.info("👤 User ID from booking: {}", userId);
             log.info("❌ Canceling booking for user {} and booking {}", userId, bookingId);
@@ -222,7 +222,7 @@ public class PayUNotificationController {
             var canceledBooking = bookingCoordinator.cancelBooking(bookingId, userId);
             
             log.info("✅ Booking {} successfully canceled", bookingId);
-            log.info("📊 New booking status: {}", canceledBooking.getStatus());
+            log.info("📊 New booking status: {}", canceledBooking.status());
             
         } catch (Exception e) {
             log.error("❌ Failed to cancel booking {}: {}", bookingId, e.getMessage(), e);

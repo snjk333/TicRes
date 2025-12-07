@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.Ticket;
+package com.oleksandr.common.dto;
 
 import com.oleksandr.common.enums.TICKET_STATUS;
 import lombok.*;
@@ -20,5 +20,5 @@ public record TicketDTO(
 
         String place,
 
-        @NotNull TICKET_STATUS status) {}
-
+        @NotNull TICKET_STATUS status
+) {}

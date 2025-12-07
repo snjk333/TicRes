@@ -1,7 +1,8 @@
 package com.oleksandr.eventprovider.Event;
 
 
-import com.oleksandr.eventprovider.Ticket.TicketDTO;
+import com.oleksandr.common.dto.EventDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

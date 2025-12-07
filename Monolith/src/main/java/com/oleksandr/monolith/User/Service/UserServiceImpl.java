@@ -72,11 +72,11 @@ public class UserServiceImpl implements UserService {
     }
 
     private void updateUserFields(User user, UserUpdateRequestDTO request) {
-        if(request.getEmail() != null) {
-            user.setEmail(request.getEmail());
+        if(request.email() != null) {
+            user.setEmail(request.email());
         }
-        if (request.getUsername() != null) {
-            user.setUsername(request.getUsername());
+        if (request.username() != null) {
+            user.setUsername(request.username());
         }
     }
 

@@ -5,23 +5,19 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class EventSummaryDTO {
+public record EventSummaryDTO (
 
-    private UUID id;
+        UUID id,
 
-    private String name;
+        String name,
 
-    private String description;
+        String description,
 
-    private String location;
+        String location,
 
-    private String imageURL;
+        String imageURL,
 
-    private LocalDateTime eventDate;
+        LocalDateTime eventDate
 
-}
+){ }

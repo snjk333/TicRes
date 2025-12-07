@@ -3,7 +3,7 @@ package com.oleksandr.monolith.User.util;
 import com.oleksandr.monolith.Booking.DTO.BookingDTO;
 import com.oleksandr.monolith.Booking.util.BookingMapper;
 import com.oleksandr.common.dto.AuthUserDTO;
-import com.oleksandr.monolith.User.DTO.UserDTO;
+import com.oleksandr.monolith.User.DTO.UserFullDTO;
 import com.oleksandr.monolith.User.DTO.UserProfileResponseDTO;
 import com.oleksandr.monolith.User.DTO.UserSummaryDTO;
 import com.oleksandr.monolith.User.EntityRepo.User;
@@ -23,14 +23,14 @@ public class UserMapper {
     }
 
     // Entity → DTO
-    public UserDTO mapToDto(User user) {
+    public UserFullDTO mapToDto(User user) {
         if (user == null) throw new IllegalArgumentException("User entity cannot be null");
 
         List<BookingDTO> bookingsDto = user.getBookings() != null
                 ? bookingMapper.mapEntityListToDtoList(user.getBookings())
                 : List.of();
 
-        return UserDTO.builder()
+        return UserFullDTO.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
@@ -43,29 +43,29 @@ public class UserMapper {
     }
 
     // DTO → Entity
-    public User mapToEntity(UserDTO dto) {
+    public User mapToEntity(UserFullDTO dto) {
         if (dto == null) throw new IllegalArgumentException("UserDTO cannot be null");
 
         User user = new User();
-        user.setId(dto.getId());
-        user.setUsername(dto.getUsername());
-        user.setEmail(dto.getEmail());
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setPhoneNumber(dto.getPhoneNumber());
-        user.setRole(dto.getRole());
+        user.setId(dto.id());
+        user.setUsername(dto.username());
+        user.setEmail(dto.email());
+        user.setFirstName(dto.firstName());
+        user.setLastName(dto.lastName());
+        user.setPhoneNumber(dto.phoneNumber());
+        user.setRole(dto.role());
         user.setBookings(new ArrayList<>()); // booking add at service from db
         return user;
     }
 
-    public User updateUserInformation(User user, UserDTO dto) {
-        if (dto.getUsername() != null) user.setUsername(dto.getUsername());
-        if (dto.getEmail() != null) user.setEmail(dto.getEmail());
-        if (dto.getRole() != null) user.setRole(dto.getRole());
+    public User updateUserInformation(User user, UserFullDTO dto) {
+        if (dto.username() != null) user.setUsername(dto.username());
+        if (dto.email() != null) user.setEmail(dto.email());
+        if (dto.role() != null) user.setRole(dto.role());
         return user;
     }
 
-    public List<UserDTO> mapListToDtoList(List<User> users) {
+    public List<UserFullDTO> mapListToDtoList(List<User> users) {
         return users == null ? List.of() :
                 users.stream()
                         .map(this::mapToDto)

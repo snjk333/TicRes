@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Scheduler;
 
-import com.oleksandr.monolith.Event.DTO.EventDTO;
+import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.monolith.integration.wrapper.EventSyncService;
 import com.oleksandr.monolith.integration.wrapper.WrapperService;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component

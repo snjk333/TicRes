@@ -1,23 +1,19 @@
 package com.oleksandr.monolith.Booking.DTO;
 
 import com.oleksandr.common.enums.BOOKING_STATUS;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.User.DTO.UserSummaryDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class BookingDetailsDTO {
-    private UUID id;
-    private UserSummaryDTO user;
-    private TicketDTO ticket;
-    private BOOKING_STATUS status;
-    private LocalDateTime createdAt;
-    private Long version;
-}
+public record BookingDetailsDTO (
+        UUID id,
+        UserSummaryDTO user,
+        TicketDTO ticket,
+        BOOKING_STATUS status,
+        LocalDateTime createdAt,
+        Long version
+) { }

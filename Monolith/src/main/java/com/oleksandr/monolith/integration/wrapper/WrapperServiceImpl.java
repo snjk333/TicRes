@@ -1,7 +1,7 @@
 package com.oleksandr.monolith.integration.wrapper;
 
-import com.oleksandr.monolith.Event.DTO.EventDTO;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.EventDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.integration.dto.PageResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;

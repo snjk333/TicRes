@@ -3,8 +3,8 @@ package com.oleksandr.monolith.Event.util;
 import com.oleksandr.monolith.Event.DTO.Response.EventDetailsDTO;
 import com.oleksandr.monolith.Event.DTO.Response.EventSummaryDTO;
 import com.oleksandr.monolith.Event.EntityRepo.Event;
-import com.oleksandr.monolith.Event.DTO.EventDTO;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.EventDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
 import com.oleksandr.monolith.Ticket.util.TicketMapper;
 import org.springframework.stereotype.Component;
@@ -25,19 +25,19 @@ public class EventMapper {
         if (dto == null) throw new IllegalArgumentException("EventDTO cannot be null");
 
         Event event = new Event();
-        event.setId(dto.getId());
-        event.setName(dto.getName());
-        event.setDescription(dto.getDescription());
-        event.setLocation(dto.getLocation());
-        event.setImageURL(dto.getImageURL());
-        event.setEventDate(dto.getEventDate());
+        event.setId(dto.id());
+        event.setName(dto.name());
+        event.setDescription(dto.description());
+        event.setLocation(dto.location());
+        event.setImageURL(dto.imageURL());
+        event.setEventDate(dto.eventDate());
 
         List<Ticket> tickets = new ArrayList<>();
-        if (dto.getTickets() != null) {
-            for (TicketDTO tDto : dto.getTickets()) {
+        if (dto.tickets() != null) {
+            for (TicketDTO tDto : dto.tickets()) {
                 if (tDto == null) continue;
                 Ticket t = ticketMapper.mapToEntity(tDto);
-                if (tDto.getId() != null) t.setId(tDto.getId());
+                if (tDto.id() != null) t.setId(tDto.id());
                 t.setEvent(event);
                 tickets.add(t);
             }
@@ -49,22 +49,22 @@ public class EventMapper {
     public Event updateEventInformation(Event eventToChange, EventDTO dto) {
         if (dto == null) return eventToChange;
 
-        if (dto.getName() != null) eventToChange.setName(dto.getName());
-        if (dto.getDescription() != null) eventToChange.setDescription(dto.getDescription());
-        if (dto.getLocation() != null) eventToChange.setLocation(dto.getLocation());
-        if (dto.getImageURL() != null) eventToChange.setImageURL(dto.getImageURL());
-        if (dto.getEventDate() != null) eventToChange.setEventDate(dto.getEventDate());
-        if (dto.getTickets() != null) {
+        if (dto.name() != null) eventToChange.setName(dto.name());
+        if (dto.description() != null) eventToChange.setDescription(dto.description());
+        if (dto.location() != null) eventToChange.setLocation(dto.location());
+        if (dto.imageURL() != null) eventToChange.setImageURL(dto.imageURL());
+        if (dto.eventDate() != null) eventToChange.setEventDate(dto.eventDate());
+        if (dto.tickets() != null) {
             if (eventToChange.getTickets() == null) {
                 eventToChange.setTickets(new ArrayList<>());
             }
             List<Ticket> existing = eventToChange.getTickets();
 
-            for (var tDto : dto.getTickets()) {
+            for (var tDto : dto.tickets()) {
                 if (tDto == null) continue;
-                if (tDto.getId() != null) {
+                if (tDto.id() != null) {
                     Optional<Ticket> opt = existing.stream()
-                            .filter(x -> x.getId() != null && x.getId().equals(tDto.getId()))
+                            .filter(x -> x.getId() != null && x.getId().equals(tDto.id()))
                             .findFirst();
                     if (opt.isPresent()) {
                         ticketMapper.updateEntityFromDto(opt.get(), tDto);
@@ -144,20 +144,19 @@ public class EventMapper {
         if (dto == null) throw new IllegalArgumentException("EventDTO cannot be null");
 
         Event event = new Event();
-        event.setId(dto.getId()); // сохраняем внешний ID события
-        event.setName(dto.getName());
-        event.setDescription(dto.getDescription());
-        event.setLocation(dto.getLocation());
-        event.setImageURL(dto.getImageURL());
-        event.setEventDate(dto.getEventDate());
+        event.setId(dto.id());
+        event.setName(dto.name());
+        event.setDescription(dto.description());
+        event.setLocation(dto.location());
+        event.setImageURL(dto.imageURL());
+        event.setEventDate(dto.eventDate());
 
         List<Ticket> tickets = new ArrayList<>();
-        if (dto.getTickets() != null) {
-            for (var tDto : dto.getTickets()) {
+        if (dto.tickets() != null) {
+            for (var tDto : dto.tickets()) {
                 if (tDto == null) continue;
                 Ticket t = ticketMapper.mapToEntity(tDto);
-                // сохраняем внешний ID билета (если есть)
-                if (tDto.getId() != null) t.setId(tDto.getId());
+                if (tDto.id() != null) t.setId(tDto.id());
                 t.setEvent(event);
                 tickets.add(t);
             }
@@ -169,13 +168,13 @@ public class EventMapper {
     public void updateEntityFromDto(Event entity, EventDTO dto) {
         if (entity == null || dto == null) return;
 
-        entity.setName(dto.getName());
-        entity.setDescription(dto.getDescription());
-        entity.setLocation(dto.getLocation());
-        entity.setImageURL(dto.getImageURL());
-        entity.setEventDate(dto.getEventDate());
+        entity.setName(dto.name());
+        entity.setDescription(dto.description());
+        entity.setLocation(dto.location());
+        entity.setImageURL(dto.imageURL());
+        entity.setEventDate(dto.eventDate());
 
-        if (dto.getTickets() != null) {
+        if (dto.tickets() != null) {
             if (entity.getTickets() == null) entity.setTickets(new ArrayList<>());
 
             Map<UUID, Ticket> existingTicketsMap = entity.getTickets().stream()
@@ -184,10 +183,10 @@ public class EventMapper {
 
             Set<UUID> dtoTicketIds = new HashSet<>();
 
-            for (var ticketDto : dto.getTickets()) {
+            for (var ticketDto : dto.tickets()) {
                 if (ticketDto == null) continue;
 
-                UUID tid = ticketDto.getId();
+                UUID tid = ticketDto.id();
                 if (tid != null) {
                     dtoTicketIds.add(tid);
                     Ticket existingTicket = existingTicketsMap.get(tid);
@@ -196,7 +195,7 @@ public class EventMapper {
                         continue;
                     } else {
                         Ticket newTicket = ticketMapper.mapToEntity(ticketDto);
-                        if (ticketDto.getId() != null) newTicket.setId(ticketDto.getId());
+                        if (ticketDto.id() != null) newTicket.setId(ticketDto.id());
                         newTicket.setEvent(entity);
                         entity.getTickets().add(newTicket);
                     }

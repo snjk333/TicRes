@@ -4,7 +4,7 @@ import com.oleksandr.monolith.Coordinator.EventTicketCoordinator;
 import com.oleksandr.monolith.Event.DTO.Response.EventDetailsDTO;
 import com.oleksandr.monolith.Event.DTO.Response.EventSummaryDTO;
 import com.oleksandr.monolith.Event.Service.EventService;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.extern.slf4j.Slf4j;

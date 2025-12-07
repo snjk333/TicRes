@@ -1,11 +1,11 @@
 package com.oleksandr.monolith.Coordinator;
 
 import com.oleksandr.monolith.Event.EntityRepo.Event;
-import com.oleksandr.monolith.Event.DTO.EventDTO;
+import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.monolith.Event.util.EventMapper;
 import com.oleksandr.monolith.Event.Service.EventService;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.Ticket.util.TicketMapper;
 import com.oleksandr.monolith.Ticket.Service.TicketService;
 import org.springframework.stereotype.Service;
@@ -48,28 +48,27 @@ public class EventTicketCoordinator {
     public EventDTO updateEventWithTickets(UUID eventId, EventDTO dto) {
         Event eventEntity = eventService.findById(eventId);
 
-        // Обновляем поля Event
         eventMapper.updateEventInformation(eventEntity, dto);
 
-        // Reconcile билетов
-        if (dto.getTickets() != null) {
+        // Reconcile
+        if (dto.tickets() != null) {
             Map<UUID, Ticket> existingById = eventEntity.getTickets().stream()
                     .filter(t -> t.getId() != null)
                     .collect(Collectors.toMap(Ticket::getId, t -> t));
 
             List<Ticket> finalList = new ArrayList<>();
-            for (TicketDTO tdto : dto.getTickets()) {
-                if (tdto.getId() == null) {
+            for (TicketDTO tdto : dto.tickets()) {
+                if (tdto.id() == null) {
                     Ticket newT = ticketMapper.mapToEntity(tdto);
                     newT.setEvent(eventEntity);
                     finalList.add(newT);
-                } else if (existingById.containsKey(tdto.getId())) {
-                    Ticket exist = existingById.get(tdto.getId());
-                    if (tdto.getPrice() != 0) exist.setPrice(tdto.getPrice());
-                    if (tdto.getType() != null) exist.setType(tdto.getType());
-                    if (tdto.getStatus() != null) exist.setStatus(tdto.getStatus());
+                } else if (existingById.containsKey(tdto.id())) {
+                    Ticket exist = existingById.get(tdto.id());
+                    if (tdto.price() != 0) exist.setPrice(tdto.price());
+                    if (tdto.type() != null) exist.setType(tdto.type());
+                    if (tdto.status() != null) exist.setStatus(tdto.status());
                     finalList.add(exist);
-                    existingById.remove(tdto.getId());
+                    existingById.remove(tdto.id());
                 } else {
                     Ticket t = ticketMapper.mapToEntity(tdto);
                     t.setEvent(eventEntity);

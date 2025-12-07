@@ -4,18 +4,14 @@ import lombok.*;
 
 import java.util.UUID;
 
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class UserSummaryDTO {
-    private UUID id;
-    private String username;
-    private String email;
+public record UserSummaryDTO(
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-}
+        UUID id,
+        String username,
+        String email,
+
+        String firstName,
+        String lastName,
+        String phoneNumber
+) { }

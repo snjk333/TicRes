@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Ticket.util;
 
-import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
 import org.springframework.stereotype.Component;
@@ -17,11 +17,11 @@ public class TicketMapper {
         if (dto == null) throw new IllegalArgumentException("TicketDTO cannot be null");
 
         Ticket ticket = new Ticket();
-        ticket.setId(dto.getId());
-        ticket.setType(dto.getType());
-        ticket.setPrice(dto.getPrice());
-        ticket.setPlace(dto.getPlace());
-        ticket.setStatus(dto.getStatus() != null ? dto.getStatus() : TICKET_STATUS.AVAILABLE);
+        ticket.setId(dto.id());
+        ticket.setType(dto.type());
+        ticket.setPrice(dto.price());
+        ticket.setPlace(dto.place());
+        ticket.setStatus(dto.status() != null ? dto.status() : TICKET_STATUS.AVAILABLE);
         return ticket;
     }
 
@@ -59,9 +59,9 @@ public class TicketMapper {
 
     public void updateEntityFromDto(Ticket entity, TicketDTO dto) {
         if (entity == null || dto == null) return;
-        entity.setPrice(dto.getPrice());
-        entity.setPlace(dto.getPlace());
-        entity.setType(dto.getType());
-        entity.setStatus(dto.getStatus() != null ? dto.getStatus() : entity.getStatus());
+        entity.setPrice(dto.price());
+        entity.setPlace(dto.place());
+        entity.setType(dto.type());
+        entity.setStatus(dto.status() != null ? dto.status() : entity.getStatus());
     }
 }

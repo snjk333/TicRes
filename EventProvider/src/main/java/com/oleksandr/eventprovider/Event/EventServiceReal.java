@@ -1,6 +1,7 @@
 package com.oleksandr.eventprovider.Event;
 
-import com.oleksandr.eventprovider.Ticket.TicketDTO;
+import com.oleksandr.common.dto.EventDTO;
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.eventprovider.TicketMaster.EventProviderService;
 import com.oleksandr.eventprovider.exception.EventNotFoundException;
 import com.oleksandr.eventprovider.exception.TicketmasterApiException;
