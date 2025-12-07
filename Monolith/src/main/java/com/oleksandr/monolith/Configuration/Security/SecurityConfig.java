@@ -20,6 +20,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
                         .requestMatchers("/public/**").permitAll()
+                        // Swagger UI & OpenAPI docs
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         // Health checks & metrics
                         .requestMatchers("/actuator/**").permitAll()
                         // PayU webhooks (external service, no JWT)
