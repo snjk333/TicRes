@@ -1,0 +1,111 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: ticres-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # Create multiple databases
+      POSTGRES_MULTIPLE_DATABASES: ${MONOLITH_DB},${REGISTER_MS_DB},${EVENT_PROVIDER_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-databases.sh:/docker-entrypoint-initdb.d/init-databases.sh
+    networks:
+      - ticres-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # RegisterMS - Authentication & User Management (Reactive)
+  register-ms:
+    build:
+      context: .
+      dockerfile: RegisterMS/Dockerfile
+    container_name: ticres-register-ms
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_R2DBC_URL: ${REGISTER_MS_R2DBC_URL}
+      SPRING_R2DBC_USERNAME: ${REGISTER_MS_R2DBC_USERNAME}
+      SPRING_R2DBC_PASSWORD: ${REGISTER_MS_R2DBC_PASSWORD}
+      SPRING_FLYWAY_URL: ${REGISTER_MS_FLYWAY_URL}
+      SPRING_FLYWAY_USER: ${REGISTER_MS_FLYWAY_USER}
+      SPRING_FLYWAY_PASSWORD: ${REGISTER_MS_FLYWAY_PASSWORD}
+      SERVER_PORT: ${REGISTER_MS_PORT}
+      MONOLITH_BASE_URL: ${MONOLITH_BASE_URL}
+    ports:
+      - "${REGISTER_MS_PORT}:${REGISTER_MS_PORT}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
+  # EventProvider - External Events & Tickets Provider
+  event-provider:
+    build:
+      context: .
+      dockerfile: EventProvider/Dockerfile
+    container_name: ticres-event-provider
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: ${EVENT_PROVIDER_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${EVENT_PROVIDER_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${EVENT_PROVIDER_DATASOURCE_PASSWORD}
+      SERVER_PORT: ${EVENT_PROVIDER_PORT}
+    ports:
+      - "${EVENT_PROVIDER_PORT}:${EVENT_PROVIDER_PORT}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
+  # Monolith - Main Business Logic (Events, Tickets, Bookings)
+  monolith:
+    build:
+      context: .
+      dockerfile: Monolith/Dockerfile
+    container_name: ticres-monolith
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: ${MONOLITH_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${MONOLITH_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${MONOLITH_DATASOURCE_PASSWORD}
+      SERVER_PORT: ${MONOLITH_PORT}
+      AUTH_SERVICE_URL: ${AUTH_SERVICE_URL}
+      EVENT_PROVIDER_URL: ${EVENT_PROVIDER_URL}
+      # PayU configuration
+      PAYU_CLIENT_ID: ${PAYU_CLIENT_ID}
+      PAYU_CLIENT_SECRET: ${PAYU_CLIENT_SECRET}
+      PAYU_MERCHANT_POS_ID: ${PAYU_MERCHANT_POS_ID}
+      PAYU_SECOND_KEY: ${PAYU_SECOND_KEY}
+      PAYU_BASE_URL: ${PAYU_BASE_URL}
+      PAYU_NOTIFY_BASE_URL: ${PAYU_NOTIFY_BASE_URL}
+      APP_FRONTEND_URL: ${APP_FRONTEND_URL}
+    ports:
+      - "${MONOLITH_PORT}:${MONOLITH_PORT}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      register-ms:
+        condition: service_started
+      event-provider:
+        condition: service_started
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
+networks:
+  ticres-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -1,6 +1,7 @@
 package com.oleksandr.monolith.integration.wrapper;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -12,8 +13,9 @@ public class ReserveService {
 
     private final WebClient webClient;
 
-    public ReserveService(WebClient.Builder builder) {
-        this.webClient = builder.baseUrl("http://localhost:8081/external").build();
+    public ReserveService(WebClient.Builder builder,
+                          @Value("${event.provider.url}") String eventProviderUrl) {
+        this.webClient = builder.baseUrl(eventProviderUrl + "/external").build();
     }
 
     public void sendBookingCreation(UUID ticketId, UUID id) {

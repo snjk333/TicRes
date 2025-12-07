@@ -3,6 +3,7 @@ package com.oleksandr.monolith.integration.wrapper;
 import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.integration.dto.PageResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -15,8 +16,9 @@ public class WrapperServiceImpl implements WrapperService {
 
     private final WebClient webClient;
 
-    public WrapperServiceImpl(WebClient.Builder builder) {
-        this.webClient = builder.baseUrl("http://localhost:8081/external").build();
+    public WrapperServiceImpl(WebClient.Builder builder, 
+                              @Value("${event.provider.url}") String eventProviderUrl) {
+        this.webClient = builder.baseUrl(eventProviderUrl + "/external").build();
     }
 
     @Override
