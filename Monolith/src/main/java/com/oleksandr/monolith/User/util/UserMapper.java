@@ -2,7 +2,7 @@ package com.oleksandr.monolith.User.util;
 
 import com.oleksandr.monolith.Booking.DTO.BookingDTO;
 import com.oleksandr.monolith.Booking.util.BookingMapper;
-import com.oleksandr.monolith.User.DTO.AuthUserDTO;
+import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.monolith.User.DTO.UserDTO;
 import com.oleksandr.monolith.User.DTO.UserProfileResponseDTO;
 import com.oleksandr.monolith.User.DTO.UserSummaryDTO;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Component
 public class UserMapper {

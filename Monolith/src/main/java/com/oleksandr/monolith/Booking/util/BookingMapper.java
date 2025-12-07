@@ -2,14 +2,11 @@ package com.oleksandr.monolith.Booking.util;
 
 import com.oleksandr.monolith.Booking.DTO.BookingDTO;
 import com.oleksandr.monolith.Booking.DTO.BookingSummaryDTO;
-import com.oleksandr.monolith.Booking.EntityRepo.BOOKING_STATUS;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Component
 public class BookingMapper {

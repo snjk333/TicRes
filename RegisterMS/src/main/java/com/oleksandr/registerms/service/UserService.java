@@ -7,7 +7,7 @@ import com.oleksandr.registerms.dto.LoginRegister.RegisterResponseDTO;
 import com.oleksandr.registerms.entity.RefreshToken;
 import com.oleksandr.registerms.entity.TokenPair;
 import com.oleksandr.registerms.entity.users.User;
-import com.oleksandr.registerms.entity.users.UserDTO;
+import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.registerms.exception.InvalidPasswordException;
 import com.oleksandr.registerms.exception.InvalidTokenException;
 import com.oleksandr.registerms.exception.UserNotFoundException;
@@ -140,7 +140,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Mono<User> updateUser(UUID id, UserDTO userDto) {
+    public Mono<User> updateUser(UUID id, AuthUserDTO userDto) {
         return Mono.empty();
     }
 }

@@ -1,5 +1,6 @@
 package com.oleksandr.eventprovider.Ticket;
 
+import com.oleksandr.common.enums.TICKET_STATUS;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

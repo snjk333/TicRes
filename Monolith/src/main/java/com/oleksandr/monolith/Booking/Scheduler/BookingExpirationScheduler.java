@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Booking.Scheduler;
 
-import com.oleksandr.monolith.Booking.EntityRepo.BOOKING_STATUS;
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import com.oleksandr.monolith.Booking.EntityRepo.BookingRepository;
 import com.oleksandr.monolith.Coordinator.BookingCoordinator;

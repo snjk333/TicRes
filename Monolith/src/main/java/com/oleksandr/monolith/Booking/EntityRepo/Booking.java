@@ -1,5 +1,6 @@
 package com.oleksandr.monolith.Booking.EntityRepo;
 
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
 import com.oleksandr.monolith.User.EntityRepo.User;
 import jakarta.persistence.*;

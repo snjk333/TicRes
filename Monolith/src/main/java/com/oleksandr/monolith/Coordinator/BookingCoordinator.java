@@ -1,14 +1,13 @@
 package com.oleksandr.monolith.Coordinator;
 
-import com.oleksandr.monolith.Booking.DTO.BookingDTO;
 import com.oleksandr.monolith.Booking.DTO.BookingDetailsDTO;
 import com.oleksandr.monolith.Booking.DTO.BookingSummaryDTO;
-import com.oleksandr.monolith.Booking.EntityRepo.BOOKING_STATUS;
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import com.oleksandr.monolith.Booking.util.BookingMapper;
 import com.oleksandr.monolith.Booking.Service.BookingService;
 import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
-import com.oleksandr.monolith.Ticket.EntityRepo.TICKET_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.Ticket.Service.TicketService;
 import com.oleksandr.monolith.Ticket.util.TicketMapper;
 import com.oleksandr.monolith.User.DTO.UserSummaryDTO;
@@ -26,7 +25,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 

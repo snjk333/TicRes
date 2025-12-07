@@ -1,7 +1,7 @@
 package com.oleksandr.registerms.util;
 
 import com.oleksandr.registerms.dto.LoginRegister.RegisterRequestDTO;
-import com.oleksandr.registerms.entity.users.Role;
+import com.oleksandr.common.enums.USER_ROLE;
 import com.oleksandr.registerms.entity.users.User;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ public class UserMapper {
 
     public User mapFromRegisterDTO(RegisterRequestDTO dto, String hashedPassword) {
         return new User(
-                Role.USER,
+                USER_ROLE.USER,
                 dto.getUsername(),
                 hashedPassword,
                 dto.getEmail(),

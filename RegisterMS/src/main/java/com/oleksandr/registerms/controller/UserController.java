@@ -5,7 +5,7 @@ import com.oleksandr.registerms.dto.LoginRegister.LoginResponseDTO;
 import com.oleksandr.registerms.dto.LoginRegister.RegisterRequestDTO;
 import com.oleksandr.registerms.dto.LoginRegister.RegisterResponseDTO;
 import com.oleksandr.registerms.entity.TokenPair;
-import com.oleksandr.registerms.entity.users.UserDTO;
+import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.registerms.service.BlacklistService;
 import com.oleksandr.registerms.service.MonolithNotificationService;
 import com.oleksandr.registerms.service.UserService;
@@ -170,9 +170,9 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<UserDTO>> getUserById(@PathVariable("id") UUID id) {
+    public Mono<ResponseEntity<AuthUserDTO>> getUserById(@PathVariable("id") UUID id) {
         return userService.findById(id)
-                .map(user -> UserDTO.builder()
+                .map(user -> AuthUserDTO.builder()
                         .id(user.getId())
                         .username(user.getUsername())
                         .email(user.getEmail())
@@ -187,9 +187,9 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public Mono<ResponseEntity<UserDTO>> updateUser(@PathVariable("id") UUID id, @RequestBody UserDTO userDto) {
+    public Mono<ResponseEntity<AuthUserDTO>> updateUser(@PathVariable("id") UUID id, @RequestBody AuthUserDTO userDto) {
         return userService.updateUser(id, userDto)
-                .map(user -> UserDTO.builder()
+                .map(user -> AuthUserDTO.builder()
                         .id(user.getId())
                         .username(user.getUsername())
                         .email(user.getEmail())

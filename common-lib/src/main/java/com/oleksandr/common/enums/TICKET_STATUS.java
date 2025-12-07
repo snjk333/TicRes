@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.Ticket;
+package com.oleksandr.common.enums;
 
 public enum TICKET_STATUS {
     AVAILABLE,

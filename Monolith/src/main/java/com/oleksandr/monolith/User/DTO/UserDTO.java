@@ -1,7 +1,7 @@
 package com.oleksandr.monolith.User.DTO;
 
 import com.oleksandr.monolith.Booking.DTO.BookingDTO;
-import com.oleksandr.monolith.User.EntityRepo.USER_ROLE;
+import com.oleksandr.common.enums.USER_ROLE;
 import lombok.*;
 
 import jakarta.validation.constraints.Email;

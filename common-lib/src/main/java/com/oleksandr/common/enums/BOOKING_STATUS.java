@@ -1,4 +1,4 @@
-package com.oleksandr.monolith.Booking.EntityRepo;
+package com.oleksandr.common.enums;
 
 public enum BOOKING_STATUS {
     CREATED,

@@ -1,5 +1,6 @@
 package com.oleksandr.eventprovider.Ticket;
 
+import com.oleksandr.common.enums.TICKET_STATUS;
 import lombok.*;
 
 import jakarta.validation.constraints.Min;

@@ -1,5 +1,6 @@
 package com.oleksandr.eventprovider.Ticket;
 
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.eventprovider.Event.Event;
 import jakarta.persistence.*;
 import lombok.*;

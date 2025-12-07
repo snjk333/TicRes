@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Ticket.DTO;
 
-import com.oleksandr.monolith.Ticket.EntityRepo.TICKET_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import lombok.*;
 
 import jakarta.validation.constraints.Min;

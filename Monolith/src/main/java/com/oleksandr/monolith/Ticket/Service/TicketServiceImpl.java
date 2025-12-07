@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Ticket.Service;
 
-import com.oleksandr.monolith.Ticket.EntityRepo.TICKET_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
 import com.oleksandr.monolith.Ticket.EntityRepo.TicketRepository;
 import com.oleksandr.monolith.common.exceptions.ConcurrentUpdateException;

@@ -18,6 +18,13 @@
     </properties>
 
     <dependencies>
+        <!-- Common library -->
+        <dependency>
+            <groupId>com.ticres_multi</groupId>
+            <artifactId>common-lib</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
         <!-- Module-specific dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

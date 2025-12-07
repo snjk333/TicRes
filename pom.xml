@@ -29,6 +29,7 @@
         <module>Monolith</module>
         <module>RegisterMS</module>
         <module>EventProvider</module>
+        <module>common-lib</module>
     </modules>
 
     <dependencyManagement>

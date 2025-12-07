@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.Booking.DTO;
 
-import com.oleksandr.monolith.Booking.EntityRepo.BOOKING_STATUS;
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
 import java.util.UUID;

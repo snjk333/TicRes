@@ -1,7 +1,7 @@
 package com.oleksandr.monolith.Ticket.util;
 
 import com.oleksandr.monolith.Ticket.DTO.TicketDTO;
-import com.oleksandr.monolith.Ticket.EntityRepo.TICKET_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.Ticket.EntityRepo.Ticket;
 import org.springframework.stereotype.Component;
 

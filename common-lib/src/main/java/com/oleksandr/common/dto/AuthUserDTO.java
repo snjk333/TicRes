@@ -1,6 +1,6 @@
-package com.oleksandr.monolith.User.DTO;
+package com.oleksandr.common.dto;
 
-import com.oleksandr.monolith.User.EntityRepo.USER_ROLE;
+import com.oleksandr.common.enums.USER_ROLE;
 import lombok.*;
 
 import java.util.UUID;

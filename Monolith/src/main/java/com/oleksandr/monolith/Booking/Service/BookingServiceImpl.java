@@ -1,9 +1,9 @@
 package com.oleksandr.monolith.Booking.Service;
 
-import com.oleksandr.monolith.Booking.EntityRepo.BOOKING_STATUS;
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import com.oleksandr.monolith.Booking.EntityRepo.BookingRepository;
-import com.oleksandr.monolith.Ticket.EntityRepo.TICKET_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.common.exceptions.BookingConflictException;
 import com.oleksandr.monolith.common.exceptions.ResourceNotFoundException;
 import com.oleksandr.monolith.User.EntityRepo.User;

@@ -1,11 +1,5 @@
 package com.oleksandr.registerms.util;
 
-import com.oleksandr.registerms.dto.LoginRegister.RegisterRequestDTO;
-import com.oleksandr.registerms.entity.users.Role;
-import com.oleksandr.registerms.entity.users.User;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 class UserMapperTest {
     UserMapper userMapper = new UserMapper();
 

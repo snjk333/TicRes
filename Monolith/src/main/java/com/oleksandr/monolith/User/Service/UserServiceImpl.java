@@ -1,5 +1,6 @@
 package com.oleksandr.monolith.User.Service;
 
+import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.monolith.User.DTO.*;
 import com.oleksandr.monolith.User.EntityRepo.User;
 import com.oleksandr.monolith.User.EntityRepo.UserRepository;

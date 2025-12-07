@@ -1,6 +1,7 @@
 package com.oleksandr.registerms.entity.users;
 
 
+import com.oleksandr.common.enums.USER_ROLE;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -30,7 +31,7 @@ public class User {
     private String email;
 
     @Column("role")
-    private Role role;
+    private USER_ROLE role;
 
     @Column("first_name")
     private String firstName;
@@ -44,7 +45,7 @@ public class User {
     @Column("created_at")
     private LocalDateTime createdAt;
 
-    public User(Role role, String username, String password, String email, String firstName, String lastName, String phone, LocalDateTime createdAt) {
+    public User(USER_ROLE role, String username, String password, String email, String firstName, String lastName, String phone, LocalDateTime createdAt) {
         this.role = role;
         this.username = username;
         this.password = password;

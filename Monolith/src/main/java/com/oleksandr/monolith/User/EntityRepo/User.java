@@ -1,5 +1,6 @@
 package com.oleksandr.monolith.User.EntityRepo;
 
+import com.oleksandr.common.enums.USER_ROLE;
 import com.oleksandr.monolith.Booking.EntityRepo.Booking;
 import jakarta.persistence.*;
 import lombok.*;

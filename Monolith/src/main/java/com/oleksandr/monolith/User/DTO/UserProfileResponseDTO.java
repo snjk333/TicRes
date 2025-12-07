@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.User.DTO;
 
-import com.oleksandr.monolith.User.EntityRepo.USER_ROLE;
+import com.oleksandr.common.enums.USER_ROLE;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
