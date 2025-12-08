@@ -90,6 +90,6 @@ public class BookingServiceImpl implements BookingService {
     @Transactional(readOnly = true)
     @Override
     public List<Booking> getBookingsByUser(UUID userId) {
-        return bookingRepository.findAllByUserId(userId);
+        return bookingRepository.findAllByUserIdWithDetails(userId);
     }
 }

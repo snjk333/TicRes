@@ -133,9 +133,7 @@ public class BookingCoordinator {
 
 
     public List<BookingSummaryDTO> getUserBookings(UUID userID) {
-        var user = userService.getOrCreateUser(userID);
-        List<Booking> bookingsList = user.getBookings();
-
+        List<Booking> bookingsList = bookingService.getBookingsByUser(userID);
         return bookingMapper.mapListToSummaryListDto(bookingsList);
     }
 
