@@ -10,11 +10,6 @@ spring:
           predicates:
             - Path=/auth/**
         
-        - id: register-ms-register
-          uri: ${REGISTER_MS_URL:http://localhost:8080}
-          predicates:
-            - Path=/api/users/register
-        
         # Monolith - all other API endpoints
         - id: monolith-api
           uri: ${MONOLITH_URL:http://localhost:8088}

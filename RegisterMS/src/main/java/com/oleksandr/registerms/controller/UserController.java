@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
@@ -40,7 +40,7 @@ public class UserController {
                     ResponseCookie refreshCookie = ResponseCookie.from("refreshToken", response.getRefreshToken())
                             .httpOnly(true)
                             .secure(SecureValue)
-                            .path("/api/users/refresh")
+                            .path("/auth/refresh")
                             .maxAge(7 * 24 * 60 * 60) // 7 days
                             .sameSite("Strict")
                             .build();
@@ -59,7 +59,7 @@ public class UserController {
                     ResponseCookie refreshCookie = ResponseCookie.from("refreshToken", response.getRefreshToken())
                             .httpOnly(true)
                             .secure(SecureValue)
-                            .path("/api/users/refresh")
+                            .path("/auth/refresh")
                             .maxAge(7 * 24 * 60 * 60)
                             .sameSite("Strict")
                             .build();
@@ -82,7 +82,7 @@ public class UserController {
                     ResponseCookie refreshCookie = ResponseCookie.from("refreshToken", newTokens.getRefreshToken())
                             .httpOnly(true)
                             .secure(SecureValue)
-                            .path("/api/users/refresh")
+                            .path("/auth/refresh")
                             .sameSite("Strict")
                             .maxAge(7 * 24 * 60 * 60)
                             .build();
@@ -127,7 +127,7 @@ public class UserController {
                         .header("Set-Cookie", ResponseCookie.from("refreshToken", "")
                                 .httpOnly(true)
                                 .secure(SecureValue)
-                                .path("/api/users/refresh")
+                                .path("/auth/refresh")
                                 .sameSite("Strict")
                                 .maxAge(0)
                                 .build().toString())
@@ -138,7 +138,7 @@ public class UserController {
                             .header("Set-Cookie", ResponseCookie.from("refreshToken", "")
                                     .httpOnly(true)
                                     .secure(SecureValue)
-                                    .path("/api/users/refresh")
+                                    .path("/auth/refresh")
                                     .sameSite("Strict")
                                     .maxAge(0)
                                     .build().toString())

@@ -28,7 +28,7 @@ public class AuthClientServiceImpl implements AuthClientService {
     public AuthUserDTO getUserById(UUID userId) {
         try {
             WebClient webClient = webClientBuilder
-                    .baseUrl(authServiceUrl + "/api/users")
+                    .baseUrl(authServiceUrl + "/auth")
                     .build();
 
             return webClient.get()
@@ -52,12 +52,12 @@ public class AuthClientServiceImpl implements AuthClientService {
     public AuthUserDTO updateUser(AuthUserDTO userDto) {
         try {
             WebClient webClient = webClientBuilder
-                    .baseUrl(authServiceUrl + "/api/users")
+                    .baseUrl(authServiceUrl + "/auth")
                     .build();
 
             return webClient
                     .patch()
-                    .uri("/{id}", userDto.getId()) // PATCH /api/users/{id}
+                    .uri("/{id}", userDto.getId()) // PATCH /auth/{id}
                     .bodyValue(userDto)            // Send JSON body
                     .retrieve()
                     .bodyToMono(AuthUserDTO.class)     // Expect updated UserDTO
@@ -76,7 +76,7 @@ public class AuthClientServiceImpl implements AuthClientService {
 //   @Override
 //    public UserDTO getUserById(UUID userId) {
 //        try {
-//            log.debug("Отправляем GET /api/users/{} в Auth MS", userId);
+//            log.debug("Отправляем GET /auth/{} в Auth MS", userId);
 //
 //            return authClient()
 //                    .get()
