@@ -16,9 +16,6 @@ A fully-functional distributed system for managing event ticket sales. **Diploma
 - [API Endpoints](#api-endpoints)
 - [Tech Stack](#tech-stack)
 - [System Components](#system-components)
-- [Security](#security)
-- [Testing](#testing)
-- [Development](#development)
 
 ---
 
@@ -605,10 +602,6 @@ Uses **Flyway** for database schema versioning.
 MIT License - free use for educational purposes.
 
 ---
-
-## 🙏 Acknowledgments
-
-Thank you for using TicRes! Your contribution helps improve the project.
 
 ### Original Repositories
 
