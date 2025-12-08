@@ -56,9 +56,8 @@ public class SecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         // Swagger UI & OpenAPI docs
                         .pathMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**").permitAll()
-                        // открытые эндпоинты
+                        // open
                         .pathMatchers("/api/users/register", "/api/users/login", "/api/users/refresh", "/api/users/logout", "/api/users/{id}", "/api/users").permitAll()
-                        // всё остальное требует аутентификации
                         .anyExchange().authenticated()
                 )
                 .build();

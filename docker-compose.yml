@@ -68,6 +68,28 @@ services:
       - ticres-network
     restart: unless-stopped
 
+  # API Gateway - Single Entry Point for Frontend
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    container_name: ticres-api-gateway
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: ${API_GATEWAY_PORT}
+      REGISTER_MS_URL: ${API_GATEWAY_REGISTER_MS_URL}
+      MONOLITH_URL: ${API_GATEWAY_MONOLITH_URL}
+    ports:
+      - "${API_GATEWAY_PORT}:${API_GATEWAY_PORT}"
+    depends_on:
+      register-ms:
+        condition: service_started
+      monolith:
+        condition: service_started
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
   # Monolith - Main Business Logic (Events, Tickets, Bookings)
   monolith:
     build:

@@ -23,6 +23,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok.version>1.18.30</lombok.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
 
     <modules>
@@ -30,10 +31,20 @@
         <module>RegisterMS</module>
         <module>EventProvider</module>
         <module>common-lib</module>
+        <module>ApiGateway</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Cloud BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
             <!-- Common versions management -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
