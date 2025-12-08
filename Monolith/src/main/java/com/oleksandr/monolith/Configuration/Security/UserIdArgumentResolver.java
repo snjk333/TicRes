@@ -1,6 +1,5 @@
 package com.oleksandr.monolith.Configuration.Security;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

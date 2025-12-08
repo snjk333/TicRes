@@ -4,10 +4,8 @@ import com.oleksandr.monolith.Booking.DTO.BookingCreateRequestDTO;
 import com.oleksandr.monolith.Booking.DTO.BookingDetailsDTO;
 import com.oleksandr.monolith.Booking.DTO.BookingSummaryDTO;
 import com.oleksandr.monolith.Coordinator.BookingCoordinator;
-import com.oleksandr.monolith.common.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +19,9 @@ import java.util.UUID;
 public class BookingsController {
 
     private final BookingCoordinator bookingCoordinator;
-    private final JwtUtil jwtUtil;
 
-    public BookingsController(BookingCoordinator bookingCoordinator, JwtUtil jwtUtil) {
+    public BookingsController(BookingCoordinator bookingCoordinator) {
         this.bookingCoordinator = bookingCoordinator;
-        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping
