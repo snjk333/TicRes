@@ -32,6 +32,7 @@
         <module>EventProvider</module>
         <module>common-lib</module>
         <module>ApiGateway</module>
+        <module>notificationService</module>
     </modules>
 
     <dependencyManagement>
