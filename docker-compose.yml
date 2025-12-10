@@ -126,6 +126,20 @@ services:
       - ticres-network
     restart: unless-stopped
 
+  # Notification Service
+  notification-service:
+    build:
+      context: .
+      dockerfile: notificationService/Dockerfile
+    container_name: ticres-notification-service
+    env_file:
+      - .env
+    ports:
+      - "8085:8085"
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
 networks:
   ticres-network:
     driver: bridge

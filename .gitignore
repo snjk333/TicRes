@@ -69,3 +69,7 @@ Thumbs.db
 
 ### Load Testing ###
 loadtest/
+
+### Temporary Files ###
+notificationService/src/main/java/com/oleksandr/controller/testerController.java
+notificationService/src/main/java/com/oleksandr/service/temp.txt
