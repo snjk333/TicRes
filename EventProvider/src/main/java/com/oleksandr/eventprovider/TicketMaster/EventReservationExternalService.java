@@ -1,10 +1,8 @@
 package com.oleksandr.eventprovider.TicketMaster;
 
-import com.oleksandr.eventprovider.Ticket.Ticket;
-import com.oleksandr.eventprovider.Ticket.TicketRepository;
+import com.oleksandr.eventprovider.Ticket.repository.TicketRepository;
 import com.oleksandr.eventprovider.TicketMaster.dto.ReserveTicketSimulation.ReservationRequestDto;
 import com.oleksandr.eventprovider.TicketMaster.dto.ReserveTicketSimulation.ReservationResponseDto;
-import com.oleksandr.eventprovider.exception.TicketNotFoundException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

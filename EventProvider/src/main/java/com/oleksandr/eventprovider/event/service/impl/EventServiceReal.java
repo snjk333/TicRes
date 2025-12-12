@@ -1,11 +1,15 @@
-package com.oleksandr.eventprovider.Event;
+package com.oleksandr.eventprovider.event.service.impl;
 
 import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.eventprovider.TicketMaster.EventProviderService;
-import com.oleksandr.eventprovider.exception.EventNotFoundException;
-import com.oleksandr.eventprovider.exception.TicketmasterApiException;
-import com.oleksandr.eventprovider.util.TicketCreationManager;
+import com.oleksandr.eventprovider.event.model.Event;
+import com.oleksandr.eventprovider.event.mapper.EventMapper;
+import com.oleksandr.eventprovider.event.output.repository.EventRepository;
+import com.oleksandr.eventprovider.event.service.api.EventService;
+import com.oleksandr.eventprovider.common.exceptions.EventNotFoundException;
+import com.oleksandr.eventprovider.common.exceptions.TicketmasterApiException;
+import com.oleksandr.eventprovider.Ticket.util.TicketCreationManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;

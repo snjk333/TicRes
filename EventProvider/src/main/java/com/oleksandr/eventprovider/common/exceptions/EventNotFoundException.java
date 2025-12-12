@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.exception;
+package com.oleksandr.eventprovider.common.exceptions;
 
 import java.util.UUID;
 

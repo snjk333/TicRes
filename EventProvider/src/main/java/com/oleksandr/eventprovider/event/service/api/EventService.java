@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.Event;
+package com.oleksandr.eventprovider.event.service.api;
 
 
 import com.oleksandr.common.dto.EventDTO;

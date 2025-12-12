@@ -1,6 +1,6 @@
-package com.oleksandr.eventprovider.FakeInfo;
+package com.oleksandr.eventprovider.event.output.repository;
 
-import com.oleksandr.eventprovider.Event.Event;
+import com.oleksandr.eventprovider.event.model.Event;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class FakeRepository {
+public class FakeEventRepository {
 
     public List<Event> events;
 
-    public FakeRepository() {
+    public FakeEventRepository() {
         events = new ArrayList<>();
 
         events.add(new Event(

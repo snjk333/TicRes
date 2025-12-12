@@ -1,7 +1,7 @@
-package com.oleksandr.eventprovider.util;
+package com.oleksandr.eventprovider.Ticket.util;
 
-import com.oleksandr.eventprovider.Event.Event;
-import com.oleksandr.eventprovider.Ticket.Ticket;
+import com.oleksandr.eventprovider.event.model.Event;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import com.oleksandr.common.enums.TICKET_STATUS;
 import org.springframework.stereotype.Component;
 

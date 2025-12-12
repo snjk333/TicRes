@@ -1,10 +1,11 @@
-package com.oleksandr.eventprovider.Event;
+package com.oleksandr.eventprovider.event.mapper;
 
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.eventprovider.Ticket.Ticket;
-import com.oleksandr.eventprovider.Ticket.TicketMapper;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
+import com.oleksandr.eventprovider.Ticket.mapper.TicketMapper;
 import com.oleksandr.eventprovider.TicketMaster.dto.EventMasterDto;
 import com.oleksandr.eventprovider.TicketMaster.dto.ImageDto;
+import com.oleksandr.eventprovider.event.model.Event;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

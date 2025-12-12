@@ -1,6 +1,6 @@
-package com.oleksandr.eventprovider.Event;
+package com.oleksandr.eventprovider.event.model;
 
-import com.oleksandr.eventprovider.Ticket.Ticket;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import jakarta.persistence.*;
 import lombok.*;
 

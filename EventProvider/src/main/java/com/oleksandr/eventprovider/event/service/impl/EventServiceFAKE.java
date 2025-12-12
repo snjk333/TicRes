@@ -1,12 +1,13 @@
-package com.oleksandr.eventprovider.FakeInfo;
+package com.oleksandr.eventprovider.event.service.impl;
 
-import com.oleksandr.eventprovider.Event.Event;
+import com.oleksandr.eventprovider.event.model.Event;
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.eventprovider.Event.EventMapper;
-import com.oleksandr.eventprovider.Event.EventService;
+import com.oleksandr.eventprovider.event.mapper.EventMapper;
+import com.oleksandr.eventprovider.event.output.repository.FakeEventRepository;
+import com.oleksandr.eventprovider.event.service.api.EventService;
 import com.oleksandr.common.dto.TicketDTO;
-import com.oleksandr.eventprovider.Ticket.TicketMapper;
-import com.oleksandr.eventprovider.util.TicketCreationManager;
+import com.oleksandr.eventprovider.Ticket.mapper.TicketMapper;
+import com.oleksandr.eventprovider.Ticket.util.TicketCreationManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,13 @@ import java.util.UUID;
 @Service
 public class EventServiceFAKE implements EventService {
 
-    private final FakeRepository fakeRepository;
+    private final FakeEventRepository fakeRepository;
     private final TicketCreationManager ticketCreationManager;
     private final EventMapper eventMapper;
     private final TicketMapper ticketMapper;
 
     public EventServiceFAKE(
-            FakeRepository fakeRepository,
+            FakeEventRepository fakeRepository,
             TicketCreationManager ticketCreationManager,
             EventMapper eventMapper,
             TicketMapper ticketMapper

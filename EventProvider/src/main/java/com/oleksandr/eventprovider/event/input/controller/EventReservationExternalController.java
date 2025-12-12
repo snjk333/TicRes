@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.rest;
+package com.oleksandr.eventprovider.event.input.controller;
 
 import com.oleksandr.eventprovider.TicketMaster.EventReservationExternalService;
 import com.oleksandr.eventprovider.TicketMaster.dto.ReserveTicketSimulation.ReservationRequestDto;

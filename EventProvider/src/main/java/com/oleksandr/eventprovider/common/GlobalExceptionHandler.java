@@ -1,5 +1,7 @@
-package com.oleksandr.eventprovider.exception;
+package com.oleksandr.eventprovider.common;
 
+import com.oleksandr.eventprovider.common.exceptions.EventNotFoundException;
+import com.oleksandr.eventprovider.common.exceptions.TicketmasterApiException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,8 @@
-package com.oleksandr.eventprovider.Ticket;
+package com.oleksandr.eventprovider.Ticket.mapper;
 
 import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.common.enums.TICKET_STATUS;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

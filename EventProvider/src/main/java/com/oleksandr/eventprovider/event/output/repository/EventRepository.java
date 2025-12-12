@@ -1,5 +1,6 @@
-package com.oleksandr.eventprovider.Event;
+package com.oleksandr.eventprovider.event.output.repository;
 
+import com.oleksandr.eventprovider.event.model.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

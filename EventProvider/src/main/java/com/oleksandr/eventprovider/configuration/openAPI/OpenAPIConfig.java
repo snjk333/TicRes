@@ -1,4 +1,4 @@
-package com.oleksandr.eventprovider.config;
+package com.oleksandr.eventprovider.configuration.openAPI;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

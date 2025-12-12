@@ -1,7 +1,7 @@
-package com.oleksandr.eventprovider.rest;
+package com.oleksandr.eventprovider.event.input.controller;
 
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.eventprovider.Event.EventService;
+import com.oleksandr.eventprovider.event.service.api.EventService;
 import com.oleksandr.common.dto.TicketDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -21,11 +21,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/external")
 @Validated
-public class MainController {
+public class EventController {
 
     private final EventService eventService;
 
-    public MainController(EventService eventService) {
+    public EventController(EventService eventService) {
         this.eventService = eventService;
     }
 

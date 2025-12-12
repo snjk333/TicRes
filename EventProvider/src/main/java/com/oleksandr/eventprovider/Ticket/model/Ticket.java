@@ -1,7 +1,7 @@
-package com.oleksandr.eventprovider.Ticket;
+package com.oleksandr.eventprovider.Ticket.model;
 
 import com.oleksandr.common.enums.TICKET_STATUS;
-import com.oleksandr.eventprovider.Event.Event;
+import com.oleksandr.eventprovider.event.model.Event;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.UUID;

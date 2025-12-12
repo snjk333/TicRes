@@ -1,7 +1,7 @@
 package com.oleksandr.eventprovider.TicketMaster;
 
 import com.oleksandr.eventprovider.TicketMaster.dto.TicketmasterResponse;
-import com.oleksandr.eventprovider.exception.TicketmasterApiException;
+import com.oleksandr.eventprovider.common.exceptions.TicketmasterApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
