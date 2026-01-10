@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleOptimisticLock(OptimisticLockException ex) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
-                .body("Данные были изменены другим пользователем. Обновите страницу.");
+                .body("Update Page");
     }
 
     @ExceptionHandler(Exception.class)
