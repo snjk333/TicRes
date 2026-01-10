@@ -15,6 +15,8 @@ public class NotificationController {
 
     private final MailService mailService;
 
+    @Deprecated // used for tests
+
     @PostMapping("/mail")
     public ResponseEntity<Void> sendMailNotification(NotificationRequest request) {
         mailService.sendEmail(request);
