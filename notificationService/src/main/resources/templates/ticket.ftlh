@@ -42,7 +42,8 @@
         <ul>
             <li><strong>Event:</strong> ${eventName}</li>
             <li><strong>Ticket type:</strong> ${ticketType}</li>
-            <li><strong>Place:</strong> ${location}</li>
+            <li><strong>Your Sit Place:</strong> ${place}</li>
+            <li><strong>Location:</strong> ${location}</li>
             <li><strong>Date:</strong> ${date}</li>
             <li><strong>Price:</strong> ${ticketPrice}</li>
         </ul>
