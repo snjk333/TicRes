@@ -122,6 +122,8 @@ services:
         condition: service_started
       event-provider:
         condition: service_started
+      ngrok:
+        condition: service_started
     networks:
       - ticres-network
     restart: unless-stopped
@@ -136,6 +138,21 @@ services:
       - .env
     ports:
       - "8085:8085"
+    networks:
+      - ticres-network
+    restart: unless-stopped
+
+  # Ngrok - Tunnel for PayU webhooks
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ticres-ngrok
+    command: 
+      - "http"
+      - "api-gateway:8000"
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    ports:
+      - "4040:4040"  # Ngrok web interface
     networks:
       - ticres-network
     restart: unless-stopped
