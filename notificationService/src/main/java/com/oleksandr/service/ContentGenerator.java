@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 @Component
 @RequiredArgsConstructor
@@ -21,12 +20,12 @@ public class ContentGenerator {
     private final Configuration configuration;
     private final Util utility;
 
-    public String getRegistrationEmailContent(UserForMailDTO userForMailDTO, Properties properties) {
+    public String getRegistrationEmailContent(UserForMailDTO userForMailDTO, Map<String, String> properties) {
         StringWriter writer = new StringWriter();
         Map<String, Object> model = new HashMap<>();
 
         model.put("nameOfClient", userForMailDTO.name());
-        model.put("title", properties.getProperty("title"));
+        model.put("title", properties.get("title"));
 
         try {
             configuration.getTemplate("register.ftlh")
@@ -40,7 +39,7 @@ public class ContentGenerator {
     }
 
 
-    public String getTicketEmailContent(UserForMailDTO userForMailDTO, Properties properties) {
+    public String getTicketEmailContent(UserForMailDTO userForMailDTO, Map<String, String> properties) {
 
         StringWriter writer = new StringWriter();
 
