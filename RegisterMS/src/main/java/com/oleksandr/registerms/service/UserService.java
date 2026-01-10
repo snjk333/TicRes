@@ -1,5 +1,6 @@
 package com.oleksandr.registerms.service;
 
+import com.oleksandr.common.notification.NotificationRequest;
 import com.oleksandr.registerms.dto.LoginRegister.LoginRequestDTO;
 import com.oleksandr.registerms.dto.LoginRegister.LoginResponseDTO;
 import com.oleksandr.registerms.dto.LoginRegister.RegisterRequestDTO;
@@ -12,6 +13,8 @@ import com.oleksandr.registerms.exception.InvalidPasswordException;
 import com.oleksandr.registerms.exception.InvalidTokenException;
 import com.oleksandr.registerms.exception.UserNotFoundException;
 import com.oleksandr.registerms.jwt.JwtTokenProvider;
+import com.oleksandr.registerms.kafka.EmailMapper;
+import com.oleksandr.registerms.kafka.KafkaProducer;
 import com.oleksandr.registerms.repository.RefreshTokenRepository;
 import com.oleksandr.registerms.repository.UserRepository;
 import com.oleksandr.registerms.util.UserMapper;
@@ -41,6 +44,9 @@ public class UserService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final R2dbcEntityTemplate r2dbcEntityTemplate;
 
+    private final KafkaProducer kafkaProducer;
+    private final EmailMapper emailMapper;
+
     private static final int SECONDS_IN_7_DAYS = 604800;
     private static final int SECONDS_1_HOUR = 3600;
 
@@ -65,6 +71,7 @@ public class UserService {
 
                     return refreshTokenRepository.deleteByUserId(savedUser.getId())
                             .then(r2dbcEntityTemplate.insert(refreshTokenEntity))
+                            .then(kafkaProducer.sendMessage(emailMapper.buildRegistrationNotificationRequest(savedUser)))
                             .thenReturn(new RegisterResponseDTO(accessToken, refreshToken, SECONDS_1_HOUR));
                 });
     }
