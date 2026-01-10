@@ -45,6 +45,12 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
+        <!--    kafka    -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
