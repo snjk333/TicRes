@@ -1,5 +1,6 @@
 package com.oleksandr.monolith.coordinator;
 
+import com.oleksandr.common.notification.NotificationRequest;
 import com.oleksandr.monolith.booking.input.dto.BookingDetailsDTO;
 import com.oleksandr.monolith.booking.input.dto.BookingSummaryDTO;
 import com.oleksandr.common.enums.BOOKING_STATUS;
@@ -8,6 +9,8 @@ import com.oleksandr.monolith.booking.mapper.BookingMapper;
 import com.oleksandr.monolith.booking.service.api.BookingService;
 import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.common.enums.TICKET_STATUS;
+import com.oleksandr.monolith.kafka.EmailMapper;
+import com.oleksandr.monolith.kafka.KafkaProducer;
 import com.oleksandr.monolith.ticket.Service.api.TicketService;
 import com.oleksandr.monolith.ticket.mapper.TicketMapper;
 import com.oleksandr.monolith.user.output.dto.UserSummaryDTO;
@@ -20,6 +23,7 @@ import com.oleksandr.monolith.payU.input.dto.PayUAuthResponseDTO;
 import com.oleksandr.monolith.payU.output.PayUOrderRequestDTO;
 import com.oleksandr.monolith.payU.input.dto.PayUOrderResponseDTO;
 import com.oleksandr.monolith.integration.wrapper.reservationIntegration.ReserveService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +34,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BookingCoordinator {
 
     private final UserService userService;
@@ -45,6 +50,10 @@ public class BookingCoordinator {
 
     private final PayUClient payUClient;
 
+    //kafka
+    private final EmailMapper emailMapper;
+    private final KafkaProducer kafkaProducer;
+
     @Value("${payu.notify.base.url}")
     private String notifyBaseUrl;
 
@@ -53,17 +62,6 @@ public class BookingCoordinator {
 
     private static final String PAYU_NOTIFICATION_PATH = "/monolith/api/payu/notifications";
 
-
-    public BookingCoordinator(UserService userService, TicketService ticketService, BookingService bookingService, ReserveService reserveService, BookingMapper bookingMapper, UserMapper userMapper, TicketMapper ticketMapper, PayUClient payUClient) {
-        this.userService = userService;
-        this.ticketService = ticketService;
-        this.bookingService = bookingService;
-        this.reserveService = reserveService;
-        this.bookingMapper = bookingMapper;
-        this.userMapper = userMapper;
-        this.ticketMapper = ticketMapper;
-        this.payUClient = payUClient;
-    }
 
     @Transactional
     public BookingSummaryDTO createBooking(UUID userId, UUID ticketId) {
@@ -109,6 +107,10 @@ public class BookingCoordinator {
         var completed = bookingService.completeBooking(booking);
 
         reserveService.sendBookingComplete(booking.getTicket().getId(), booking.getId());
+
+        NotificationRequest request = emailMapper.buildPurchaseConfirmMail(completed);
+        kafkaProducer.sendMessage(request);
+
         return bookingMapper.mapToSummaryDto(completed);
     }
 
