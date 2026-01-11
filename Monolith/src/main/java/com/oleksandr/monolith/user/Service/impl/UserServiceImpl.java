@@ -31,11 +31,6 @@ public class UserServiceImpl implements UserService {
         this.authClientService = authClientService;
     }
 
-    /**
-     * Находит пользователя в локальной БД или создает его,
-     * получая данные из внешнего сервиса.
-     * Содержит надежную обработку гонки потоков (race condition).
-     */
     @Transactional
     @Override
     public User getOrCreateUser(UUID userId) {
