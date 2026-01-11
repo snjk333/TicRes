@@ -1,8 +1,8 @@
 package com.oleksandr.eventprovider.Ticket.util;
 
-import com.oleksandr.eventprovider.event.model.Event;
-import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import com.oleksandr.common.enums.TICKET_STATUS;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
+import com.oleksandr.eventprovider.event.model.Event;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

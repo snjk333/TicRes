@@ -2,7 +2,8 @@ package com.oleksandr.monolith.payU.input.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.NoArgsConstructor; // <--- Импортируем
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data

@@ -1,12 +1,12 @@
 package com.oleksandr.monolith.event.mapper;
 
-import com.oleksandr.monolith.event.output.dto.EventDetailsDTO;
-import com.oleksandr.monolith.event.output.dto.EventSummaryDTO;
-import com.oleksandr.monolith.event.model.Event;
 import com.oleksandr.common.dto.EventDTO;
 import com.oleksandr.common.dto.TicketDTO;
-import com.oleksandr.monolith.ticket.model.Ticket;
+import com.oleksandr.monolith.event.model.Event;
+import com.oleksandr.monolith.event.output.dto.EventDetailsDTO;
+import com.oleksandr.monolith.event.output.dto.EventSummaryDTO;
 import com.oleksandr.monolith.ticket.mapper.TicketMapper;
+import com.oleksandr.monolith.ticket.model.Ticket;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

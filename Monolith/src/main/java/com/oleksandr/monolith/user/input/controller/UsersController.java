@@ -2,10 +2,10 @@ package com.oleksandr.monolith.user.input.controller;
 
 import com.oleksandr.monolith.booking.input.dto.BookingSummaryDTO;
 import com.oleksandr.monolith.coordinator.BookingCoordinator;
+import com.oleksandr.monolith.user.Service.api.UserService;
+import com.oleksandr.monolith.user.input.dto.UserUpdateRequestDTO;
 import com.oleksandr.monolith.user.output.dto.UserProfileResponseDTO;
 import com.oleksandr.monolith.user.output.dto.UserSummaryDTO;
-import com.oleksandr.monolith.user.input.dto.UserUpdateRequestDTO;
-import com.oleksandr.monolith.user.Service.api.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

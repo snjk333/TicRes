@@ -1,12 +1,12 @@
 package com.oleksandr.monolith.event.service.impl;
 
-import com.oleksandr.monolith.event.service.api.EventService;
+import com.oleksandr.monolith.common.exceptions.ResourceNotFoundException;
+import com.oleksandr.monolith.event.mapper.EventMapper;
+import com.oleksandr.monolith.event.model.Event;
 import com.oleksandr.monolith.event.output.dto.EventDetailsDTO;
 import com.oleksandr.monolith.event.output.dto.EventSummaryDTO;
-import com.oleksandr.monolith.event.model.Event;
-import com.oleksandr.monolith.event.mapper.EventMapper;
 import com.oleksandr.monolith.event.repository.EventRepository;
-import com.oleksandr.monolith.common.exceptions.ResourceNotFoundException;
+import com.oleksandr.monolith.event.service.api.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -22,5 +22,15 @@ public class KafkaConsumer {
         mailService.sendEmail(message);
     }
 
+    /*
+
+        REGISTRATION_CONFIRM("Your successful registration at TicRes"),
+        TICKET_PURCHASE("Congratulations on your successful purchase");
+
+
+        register ms - registration confirm. after registration send message
+
+        ticket_purchase - monolith, after ticket confirm
+     */
 
 }

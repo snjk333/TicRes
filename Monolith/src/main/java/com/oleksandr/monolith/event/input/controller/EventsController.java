@@ -1,10 +1,10 @@
 package com.oleksandr.monolith.event.input.controller;
 
+import com.oleksandr.common.dto.TicketDTO;
 import com.oleksandr.monolith.coordinator.EventTicketCoordinator;
 import com.oleksandr.monolith.event.output.dto.EventDetailsDTO;
 import com.oleksandr.monolith.event.output.dto.EventSummaryDTO;
 import com.oleksandr.monolith.event.service.api.EventService;
-import com.oleksandr.common.dto.TicketDTO;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.extern.slf4j.Slf4j;

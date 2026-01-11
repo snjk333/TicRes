@@ -1,14 +1,14 @@
 package com.oleksandr.monolith.booking.service.impl;
 
 import com.oleksandr.common.enums.BOOKING_STATUS;
+import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.booking.model.Booking;
 import com.oleksandr.monolith.booking.repository.BookingRepository;
-import com.oleksandr.common.enums.TICKET_STATUS;
 import com.oleksandr.monolith.booking.service.api.BookingService;
 import com.oleksandr.monolith.common.exceptions.BookingConflictException;
 import com.oleksandr.monolith.common.exceptions.ResourceNotFoundException;
-import com.oleksandr.monolith.user.model.User;
 import com.oleksandr.monolith.ticket.model.Ticket;
+import com.oleksandr.monolith.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

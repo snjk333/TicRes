@@ -1,6 +1,7 @@
 package com.oleksandr.monolith.configuration.Security;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+
 import java.util.UUID;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {

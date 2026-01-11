@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.user.output.dto;
 
-import lombok.*;
+import lombok.Builder;
 
 import java.util.UUID;
 

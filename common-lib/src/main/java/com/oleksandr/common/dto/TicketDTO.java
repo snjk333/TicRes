@@ -1,11 +1,11 @@
 package com.oleksandr.common.dto;
 
 import com.oleksandr.common.enums.TICKET_STATUS;
-import lombok.*;
-
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+
 import java.util.UUID;
 
 @Builder

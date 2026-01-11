@@ -1,8 +1,8 @@
 package com.oleksandr.eventprovider.TicketMaster;
 
-import com.oleksandr.eventprovider.event.model.Event;
-import com.oleksandr.eventprovider.event.mapper.EventMapper;
 import com.oleksandr.eventprovider.TicketMaster.dto.TicketmasterResponse;
+import com.oleksandr.eventprovider.event.mapper.EventMapper;
+import com.oleksandr.eventprovider.event.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

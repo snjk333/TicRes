@@ -1,12 +1,12 @@
 package com.oleksandr.monolith.user.output.dto;
 
-import com.oleksandr.monolith.booking.input.dto.BookingDTO;
 import com.oleksandr.common.enums.USER_ROLE;
-import lombok.*;
-
+import com.oleksandr.monolith.booking.input.dto.BookingDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+
 import java.util.List;
 import java.util.UUID;
 

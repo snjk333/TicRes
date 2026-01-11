@@ -1,9 +1,9 @@
 package com.oleksandr.monolith.booking.input.dto;
 
-import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.common.dto.TicketDTO;
+import com.oleksandr.common.enums.BOOKING_STATUS;
 import com.oleksandr.monolith.user.output.dto.UserSummaryDTO;
-import lombok.*;
+import lombok.Builder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

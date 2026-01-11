@@ -4,7 +4,7 @@ import com.oleksandr.common.enums.USER_ROLE;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Builder;
 
 import java.util.UUID;
 

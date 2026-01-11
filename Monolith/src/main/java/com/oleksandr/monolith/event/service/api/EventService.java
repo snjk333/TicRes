@@ -1,8 +1,8 @@
 package com.oleksandr.monolith.event.service.api;
 
+import com.oleksandr.monolith.event.model.Event;
 import com.oleksandr.monolith.event.output.dto.EventDetailsDTO;
 import com.oleksandr.monolith.event.output.dto.EventSummaryDTO;
-import com.oleksandr.monolith.event.model.Event;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 

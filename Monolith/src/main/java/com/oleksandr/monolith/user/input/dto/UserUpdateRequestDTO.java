@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.user.input.dto;
 
-import lombok.*;
+import lombok.Builder;
 
 @Builder
 public record UserUpdateRequestDTO(

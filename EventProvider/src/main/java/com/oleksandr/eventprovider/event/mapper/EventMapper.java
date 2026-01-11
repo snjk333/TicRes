@@ -1,8 +1,8 @@
 package com.oleksandr.eventprovider.event.mapper;
 
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import com.oleksandr.eventprovider.Ticket.mapper.TicketMapper;
+import com.oleksandr.eventprovider.Ticket.model.Ticket;
 import com.oleksandr.eventprovider.TicketMaster.dto.EventMasterDto;
 import com.oleksandr.eventprovider.TicketMaster.dto.ImageDto;
 import com.oleksandr.eventprovider.event.model.Event;

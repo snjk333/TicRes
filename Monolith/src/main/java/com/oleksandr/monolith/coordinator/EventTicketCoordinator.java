@@ -1,17 +1,20 @@
 package com.oleksandr.monolith.coordinator;
 
-import com.oleksandr.monolith.event.model.Event;
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.monolith.event.mapper.EventMapper;
-import com.oleksandr.monolith.event.service.api.EventService;
-import com.oleksandr.monolith.ticket.model.Ticket;
 import com.oleksandr.common.dto.TicketDTO;
-import com.oleksandr.monolith.ticket.mapper.TicketMapper;
+import com.oleksandr.monolith.event.mapper.EventMapper;
+import com.oleksandr.monolith.event.model.Event;
+import com.oleksandr.monolith.event.service.api.EventService;
 import com.oleksandr.monolith.ticket.Service.api.TicketService;
+import com.oleksandr.monolith.ticket.mapper.TicketMapper;
+import com.oleksandr.monolith.ticket.model.Ticket;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

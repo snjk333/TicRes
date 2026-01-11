@@ -1,8 +1,8 @@
 package com.oleksandr.eventprovider.event.input.controller;
 
 import com.oleksandr.common.dto.EventDTO;
-import com.oleksandr.eventprovider.event.service.api.EventService;
 import com.oleksandr.common.dto.TicketDTO;
+import com.oleksandr.eventprovider.event.service.api.EventService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.springframework.data.domain.Page;

@@ -1,12 +1,12 @@
 package com.oleksandr.monolith.user.mapper;
 
+import com.oleksandr.common.dto.AuthUserDTO;
 import com.oleksandr.monolith.booking.input.dto.BookingDTO;
 import com.oleksandr.monolith.booking.mapper.BookingMapper;
-import com.oleksandr.common.dto.AuthUserDTO;
+import com.oleksandr.monolith.user.model.User;
 import com.oleksandr.monolith.user.output.dto.UserFullDTO;
 import com.oleksandr.monolith.user.output.dto.UserProfileResponseDTO;
 import com.oleksandr.monolith.user.output.dto.UserSummaryDTO;
-import com.oleksandr.monolith.user.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

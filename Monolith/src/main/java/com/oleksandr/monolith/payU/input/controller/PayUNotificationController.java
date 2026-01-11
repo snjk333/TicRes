@@ -2,10 +2,10 @@ package com.oleksandr.monolith.payU.input.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oleksandr.monolith.coordinator.BookingCoordinator;
-import com.oleksandr.monolith.payU.util.PayUSignatureVerifier;
+import com.oleksandr.monolith.payU.input.dto.PayUNotificationDTO;
 import com.oleksandr.monolith.payU.model.ProcessedPayUNotification;
 import com.oleksandr.monolith.payU.repository.ProcessedPayUNotificationRepository;
-import com.oleksandr.monolith.payU.input.dto.PayUNotificationDTO;
+import com.oleksandr.monolith.payU.util.PayUSignatureVerifier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.oleksandr.monolith.booking.input.dto;
 
-import lombok.*;
+import lombok.Builder;
 
 import java.util.UUID;
 
