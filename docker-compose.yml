@@ -22,6 +22,38 @@ services:
       retries: 5
     restart: unless-stopped
 
+  # Kafka (KRaft mode - no Zookeeper needed)
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: ticres-kafka
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 3
+      CLUSTER_ID: ticres-kafka-cluster
+    ports:
+      - "9092:9092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - ticres-network
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
   # RegisterMS - Authentication & User Management (Reactive)
   register-ms:
     build:
@@ -38,10 +70,13 @@ services:
       SPRING_FLYWAY_PASSWORD: ${REGISTER_MS_FLYWAY_PASSWORD}
       SERVER_PORT: ${REGISTER_MS_PORT}
       MONOLITH_BASE_URL: ${MONOLITH_BASE_URL}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     ports:
       - "${REGISTER_MS_PORT}:${REGISTER_MS_PORT}"
     depends_on:
       postgres:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
     networks:
       - ticres-network
@@ -105,6 +140,7 @@ services:
       AUTH_SERVICE_URL: ${AUTH_SERVICE_URL}
       EVENT_PROVIDER_URL: ${EVENT_PROVIDER_URL}
       JWT_SECRET: ${JWT_SECRET}
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       # PayU configuration
       PAYU_CLIENT_ID: ${PAYU_CLIENT_ID}
       PAYU_CLIENT_SECRET: ${PAYU_CLIENT_SECRET}
@@ -117,6 +153,8 @@ services:
       - "${MONOLITH_PORT}:${MONOLITH_PORT}"
     depends_on:
       postgres:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
       register-ms:
         condition: service_started
@@ -134,10 +172,15 @@ services:
       context: .
       dockerfile: notificationService/Dockerfile
     container_name: ticres-notification-service
-    env_file:
-      - .env
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      NOTIFICATION_SPRING_MAIL_USERNAME: ${NOTIFICATION_SPRING_MAIL_USERNAME}
+      NOTIFICATION_SPRING_MAIL_PASSWORD: ${NOTIFICATION_SPRING_MAIL_PASSWORD}
     ports:
       - "8085:8085"
+    depends_on:
+      kafka:
+        condition: service_healthy
     networks:
       - ticres-network
     restart: unless-stopped
@@ -163,3 +206,4 @@ networks:
 
 volumes:
   postgres_data:
+  kafka_data:
