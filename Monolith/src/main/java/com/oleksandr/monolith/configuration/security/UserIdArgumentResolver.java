@@ -1,4 +1,4 @@
-package com.oleksandr.monolith.configuration.Security;
+package com.oleksandr.monolith.configuration.security;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.context.SecurityContextHolder;

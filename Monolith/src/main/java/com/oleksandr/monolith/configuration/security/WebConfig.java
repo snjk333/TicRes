@@ -1,4 +1,4 @@
-package com.oleksandr.monolith.configuration.Security;
+package com.oleksandr.monolith.configuration.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
